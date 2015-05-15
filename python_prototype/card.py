@@ -17,31 +17,32 @@ class Card:
         "king",
     ]
     _values = {
-        _names[0]: 1,
-        _names[1]: 2,
-        _names[2]: 3,
-        _names[3]: 4,
-        _names[4]: 5,
-        _names[5]: 6,
-        _names[6]: 7,
-        _names[7]: 8,
-        _names[8]: 9,
-        _names[9]: 10,
-        _names[10]: 10,
-        _names[11]: 10,
-        _names[12]: 10,
+        names[0]: 1,
+        names[1]: 2,
+        names[2]: 3,
+        names[3]: 4,
+        names[4]: 5,
+        names[5]: 6,
+        names[6]: 7,
+        names[7]: 8,
+        names[8]: 9,
+        names[9]: 10,
+        names[10]: 10,
+        names[11]: 10,
+        names[12]: 10,
     }
 
     def __init__(self, suit, name):
-        self.suit = _suits[suit]
+        self.suit = suits[suit]
         self.name = name
         self.value = _values[name]
+        self.full_name = "{} Of {}".format(name, suits[suit))
     
-    def get_suit():
+    def get_suit(self):
         return self.suit
 
-    def get_value(is_high=False):
+    def get_value(self, is_high=False):
         value = self.value
-        if is_high and self.name == _names[0]:
+        if is_high and self.name == names[0]:
             value += 10
         return value
