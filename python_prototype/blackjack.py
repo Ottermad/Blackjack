@@ -51,24 +51,32 @@ for player in players:
             print("You have pontoon. Automatically sticking.")
         else:
             while True:
-                # Output options to stick, twist, or buy.
-                option = input("Option: ")
-                if option == "stick":
+                if player.is_bust():
+                    print("{} is bust!".format(player.name))
                     break
-                elif option == "twist":
-                    card = random_card()
-                    print("{} has been dealt {}".format(player.name, card.full_name))
-                    if player.is_bust():
-                        print("{} is bust!".format(player.name))
-                elif option == "buy":
-                    bet = input("Increment Bet By: ")
-                    player.increment_bet(bet)
-                    print("{} has incremented his bet by {}.{}'s Total Bet: {}".format(player.name, bet, player.name, player.bet))
+                else:
+                    # Output options to stick, twist, or buy.
+                    option = input("Option: ")
+                    if option == "stick":
+                        break
+                    elif option == "twist":
+                        card = random_card()
+                        print("{} has been dealt {}".format(player.name, card.full_name))
+                        player.add_card(card)
+                        print("{}'s total score is: {}".format(player.name, player.get_score()))
+                    elif option == "buy":
+                        bet = input("Increment Bet By: ")
+                        player.increment_bet(bet)
+                        print("{} has incremented his bet by {}.{}'s Total Bet: {}".format(player.name, bet, player.name, player.bet))
+                        card = random_card()
+                        print("{} has been dealt {}".format(player.name, card.full_name))
+                        player.add_card(card)
+                        print("{}'s total score is: {}".format(player.name, player.get_score()))
     else:
         index_of_banker = players.index(player)
  
 # Banker Logic
-bank = player[index_of_banker]
+bank = players[index_of_banker]
 for card in bank.cards: 
     print("{} (banker) has {}.".format(bank.name, card.full_name))
 

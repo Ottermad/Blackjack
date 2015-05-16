@@ -1,3 +1,5 @@
+from card import Card
+
 class Player:
     def __init__(self, name, money, is_banker=False):
         self.name = name
