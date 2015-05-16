@@ -96,9 +96,17 @@ for player in players:
             if not bank.has_pontoon():
                 win = True
             else:
-                # both have same picture card
-                #   win = False
-                # 
+                bank_picture_card = None
+                player_picture_card = None
+                for card in bank.cards:
+                    if card.name == "jack" or card.name == "queen" or card.name == "king":
+                        bank_picture_card = card
+                for card in player.cards:
+                    if card.name == "jack" or card.name == "queen" or card.name == "king":
+                        player_picture_card = card
+                picture_card_scores = {"king": 3, "queen": 2, "jack": 1}
+                if picture_card_scores[player_picture_card.name] > picture_card_scores[bank_picture_card.name]:
+                    win = True
         if player.is_bust():
             print("{} is bust.".format(player.name))
 
