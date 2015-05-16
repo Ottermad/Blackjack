@@ -23,7 +23,7 @@ def random_card():
 # Game start
 
 # Player setup
-banker = Player(name="James",money=20)
+banker = Player(name="James",money=20, is_banker=True)
 charlie = Player(name="Charles", money=20)
 
 players = [banker, charlie]
@@ -55,7 +55,7 @@ for player in players:
                 option = input("Option: ")
                 if option == "stick":
                     break
-                elif option == "twist"
+                elif option == "twist":
                     card = random_card()
                     print("{} has been dealt {}".format(player.name, card.full_name))
                     if player.is_bust():
@@ -109,8 +109,15 @@ for player in players:
                     win = True
         if player.is_bust():
             print("{} is bust.".format(player.name))
-
-        
+        if player.get_score() > bank.get_score() and not player.is_bust():
+            win = True
+        if win:
+            print("{} gains {}".format(player.name, player.bet))
+            player.increment_money(player.bet)
+        else: 
+            print("{} (banker) gains {}".format(bank.name, player.bet))
+            player.increment_money(-player.bet)
+            bank.increment_money(player.bet)
 
 
 
