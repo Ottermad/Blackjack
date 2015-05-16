@@ -36,7 +36,7 @@ class Card:
         self.suit = suits[suit]
         self.name = name
         self.value = _values[name]
-        self.full_name = "{} Of {}".format(name, suits[suit))
+        self.full_name = "{} Of {}".format(name, suits[suit])
     
     def get_suit(self):
         return self.suit

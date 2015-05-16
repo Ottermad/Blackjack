@@ -10,8 +10,8 @@ class Player:
     
     def has_pontoon(self):
         if len(self.cards) == 2:
-            if bool(Card.names[10:13] in self.cards[0].name) != bool(Card.names[10:13] in self.cards[1].name):
-                if bool(Card.names[0] in self.cards[0].name) != bool(Card.names[0] in self.cards.[1].name):
+            if bool(self.cards[0].name in Card.names[10:13])  != bool(self.cards[1].name in Card.names[10:13]):
+                if bool(self.cards[0].name in Card.names[0]) != bool(self.cards[1].name in Card.names[0]):
                     return True
         return False
     
@@ -21,7 +21,14 @@ class Player:
             if card.name == "ace":
                 aces.append(card)
             else:
-                score += card.get_value()
+                score += card.get_value() # 10
+        possible = 21 - score # 21 - 10 = 11
+        possible = possible // 11 # 21 // 11 = 1
+        left_over = len(aces) - possible # 1 - 1 = 0
+        for num in range(0, possible):
+            score += aces[num].get_value(is_high=True)
+        for num in range(0, left_over):
+            score += aces[num].get_value()
         return score
     
     def is_bust(self):
