@@ -85,8 +85,10 @@ while True:
         # Twist
         card = random_card()
         print("{} (banker) has been dealt {}".format(bank.name, card.full_name))
+        bank.add_card(card)
         if player.is_bust():
             print("{} (banker) is bust!".format(bank.name))
+            break
     else:
         # Stick
         print("{} (banker) sticks.".format(bank.name))

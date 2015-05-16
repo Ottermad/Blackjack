@@ -26,13 +26,14 @@ class Player:
                 aces.append(card)
             else:
                 score += card.get_value() # 10
-        possible = 21 - score # 21 - 10 = 11
-        possible = possible // 11 # 21 // 11 = 1
-        left_over = len(aces) - possible # 1 - 1 = 0
-        for num in range(0, possible):
-            score += aces[num].get_value(is_high=True)
-        for num in range(0, left_over):
-            score += aces[num].get_value()
+        if len(aces) > 0:
+            possible = 21 - score # 21 - 10 = 11
+            possible = possible // 11 # 21 // 11 = 1
+            left_over = len(aces) - possible # 1 - 1 = 0
+            for num in range(0, possible):
+                score += aces[num].get_value(is_high=True)
+            for num in range(0, left_over):
+                score += aces[num].get_value()
         return score
     
     def is_bust(self):
