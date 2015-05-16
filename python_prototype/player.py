@@ -1,9 +1,10 @@
 class Player:
-    def __init__(self, name, is_banker=False):
+    def __init__(self, name, money, is_banker=False):
         self.name = name
         self.is_banker = is_banker
         self.cards = []
         self.bet = 0
+        self.money = money
     
     def add_card(self, card):
         self.cards.append(card)
@@ -17,6 +18,7 @@ class Player:
     
     def get_score(self):
         aces = []
+        score = 0
         for card in self.cards:
             if card.name == "ace":
                 aces.append(card)
@@ -42,3 +44,6 @@ class Player:
     
     def reset_bet(self):
         self.bet = 0
+    
+    def increment_money(self, increment):
+        self.money += increment

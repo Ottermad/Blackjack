@@ -33,16 +33,16 @@ class Card:
     }
 
     def __init__(self, suit, name):
-        self.suit = suits[suit]
+        self.suit = suit 
         self.name = name
-        self.value = _values[name]
-        self.full_name = "{} Of {}".format(name, suits[suit])
+        self.value = self._values[name]
+        self.full_name = "{} Of {}".format(name,suit)
     
     def get_suit(self):
         return self.suit
 
     def get_value(self, is_high=False):
         value = self.value
-        if is_high and self.name == names[0]:
+        if is_high and self.name == self.names[0]:
             value += 10
         return value
