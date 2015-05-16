@@ -23,8 +23,8 @@ def random_card():
 # Game start
 
 # Player setup
-banker = {}
-charlie = {}
+banker = Player(name="James",money=20)
+charlie = Player(name="Charles", money=20)
 
 players = [banker, charlie]
 
@@ -42,8 +42,8 @@ for player in players:
             print(card.full_name)
         print(player.get_score())
         # Betting
-        bet = input()
-        player.increment_bet(int(bet))
+        bet = input("Bet: ")
+        player.increment_bet(float(bet))
 # Round
 for player in players:
     if not player.is_banker:
@@ -52,18 +52,18 @@ for player in players:
         else:
             while True:
                 # Output options to stick, twist, or buy.
-                option = input()
+                option = input("Option: ")
                 if option == "stick":
                     break
                 elif option == "twist"
                     card = random_card()
                     print("{} has been dealt {}".format(player.name, card.full_name))
                     if player.is_bust():
-                        print("{} is bust!".format(player.name)
+                        print("{} is bust!".format(player.name))
                 elif option == "buy":
-                    bet = input()
+                    bet = input("Increment Bet By: ")
                     player.increment_bet(bet)
-                    print("{} has incremented his bet by {}.{}'s Total Bet: {}".format(player.name, bet, player.name, player.bet)
+                    print("{} has incremented his bet by {}.{}'s Total Bet: {}".format(player.name, bet, player.name, player.bet))
     else:
         index_of_banker = players.index(player)
  
@@ -78,20 +78,32 @@ while True:
         card = random_card()
         print("{} (banker) has been dealt {}".format(bank.name, card.full_name))
         if player.is_bust():
-            print("{} (banker) is bust!".format(bank.name)
+            print("{} (banker) is bust!".format(bank.name))
     else:
         # Stick
-        print("{} (banker) sticks.".format(bank.name)
+        print("{} (banker) sticks.".format(bank.name))
         break
 
 # Reveal
-winners = 
 for player in players:
     if not player.is_banker:
+        win =  False
         for card in player.cards: 
             print("{} has {}".format(player.name, card.full_name))
         print("{}'s total score is: {}".format(player.name, player.get_score()))
         if player.has_pontoon():
             print("{} has pontoon.".format(player.name))
+            if not bank.has_pontoon():
+                win = True
+            else:
+                # both have same picture card
+                #   win = False
+                # 
         if player.is_bust():
             print("{} is bust.".format(player.name))
+
+        
+
+
+
+
